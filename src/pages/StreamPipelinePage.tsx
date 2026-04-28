@@ -6,6 +6,7 @@ const statuses: StreamStatus[] = ['idea', 'recording', 'editing', 'published'];
 
 export function StreamPipelinePage() {
   const [projects, setProjects] = useState(() => Base44.list('streamProjects'));
+  const [experiments] = useState(() => Base44.list('contentExperiments'));
   const [title, setTitle] = useState('');
 
   const grouped = useMemo(
@@ -14,6 +15,37 @@ export function StreamPipelinePage() {
   );
 
   return (
+    <section className="space-y-5">
+      <h1 className="text-2xl font-bold">Stream Pipeline</h1>
+
+      <div className="rounded-xl border border-slate-700 bg-slate-900/80 p-4">
+        <h2 className="mb-3 text-lg font-semibold">Pillar Planning Board</h2>
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-sm">
+            <thead className="text-left text-slate-400">
+              <tr>
+                <th className="pb-2 pr-4">Pillar</th>
+                <th className="pb-2 pr-4">Social Norm Violation</th>
+                <th className="pb-2 pr-4">Belief Challenge</th>
+                <th className="pb-2 pr-4">Human Vulnerability</th>
+                <th className="pb-2">Escalation Experiment</th>
+              </tr>
+            </thead>
+            <tbody>
+              {experiments.map((exp) => (
+                <tr key={exp.id} className="border-t border-slate-800 align-top">
+                  <td className="py-2 pr-4 font-semibold">{exp.pillar}</td>
+                  <td className="py-2 pr-4">{exp.socialNormViolation ? 'Yes' : 'No'}</td>
+                  <td className="py-2 pr-4">{exp.beliefChallenge}</td>
+                  <td className="py-2 pr-4">{exp.humanVulnerability}</td>
+                  <td className="py-2">{exp.escalationExperiment}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     <section className="space-y-4">
       <h1 className="text-2xl font-bold">Stream Pipeline</h1>
       <div className="flex gap-2">
@@ -37,6 +69,7 @@ export function StreamPipelinePage() {
           Add
         </button>
       </div>
+
       <div className="grid gap-3 md:grid-cols-4">
         {grouped.map(([status, items]) => (
           <div key={status} className="rounded-xl bg-slate-800/70 p-3">

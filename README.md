@@ -17,6 +17,8 @@ This repository now includes a Creator-first dashboard prototype implementing th
 
 - Dashboard command center with live status indicators, quick metrics, activity feed, pre-flight checklist, and Go Live action.
 - Stream Pipeline lifecycle stages (`Idea → Recording → Editing → Published`) and platform targets (Twitch, YouTube, Kick, TikTok).
+- Clip Pipeline workflow with posting state, ROI-oriented metrics, and diagnostics.
+- Structured content-ops tables for pillar experiments, distribution states, short blueprints, timeline sections, and retention diagnostics.
 - Clip Pipeline workflow with posting state and ROI-oriented metrics.
 - Growth System tracking all six growth levers and weekly progress notes.
 - Category Arbitrage calculations with viewer/streamer ratio and tier verdicting.
