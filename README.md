@@ -20,6 +20,7 @@ This repository now includes a Creator-first dashboard prototype implementing th
 - Clip Pipeline workflow with posting state, ROI-oriented metrics, and diagnostics.
 - Structured content-ops tables for pillar experiments, distribution states, short blueprints, timeline sections, and retention diagnostics.
 - Clip pipeline has been split into feature modules (data hook + table components) to improve maintainability/debugging.
+- Clip Pipeline workflow with posting state and ROI-oriented metrics.
 - Growth System tracking all six growth levers and weekly progress notes.
 - Category Arbitrage calculations with viewer/streamer ratio and tier verdicting.
 - Raid Network roster and reciprocity history view.
@@ -30,6 +31,7 @@ This repository now includes a Creator-first dashboard prototype implementing th
 ### Data persistence
 
 The app uses a lightweight **Base44-style entity layer** in `src/data/base44.ts` that persists entities to `localStorage` and includes malformed localStorage recovery + one-click seed reset support:
+The app uses a lightweight **Base44-style entity layer** in `src/data/base44.ts` that persists entities to `localStorage`:
 
 - `StreamProject`
 - `Clip`
