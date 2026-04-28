@@ -19,6 +19,7 @@ This repository now includes a Creator-first dashboard prototype implementing th
 - Stream Pipeline lifecycle stages (`Idea → Recording → Editing → Published`) and platform targets (Twitch, YouTube, Kick, TikTok).
 - Clip Pipeline workflow with posting state, ROI-oriented metrics, and diagnostics.
 - Structured content-ops tables for pillar experiments, distribution states, short blueprints, timeline sections, and retention diagnostics.
+- Clip pipeline has been split into feature modules (data hook + table components) to improve maintainability/debugging.
 - Clip Pipeline workflow with posting state and ROI-oriented metrics.
 - Growth System tracking all six growth levers and weekly progress notes.
 - Category Arbitrage calculations with viewer/streamer ratio and tier verdicting.
@@ -39,6 +40,18 @@ The app uses a lightweight **Base44-style entity layer** in `src/data/base44.ts`
 - `GrowthEntry`
 - `CategoryEntry`
 
+## NPM Access Setup
+
+If your environment blocks anonymous package installs, configure npm auth before installing:
+
+```bash
+export NPM_TOKEN=<your-npm-token>
+npm run npm:access
+npm whoami
+```
+
+You can also copy `.npmrc.example` to `.npmrc` and inject your token securely.
+
 ## Development
 
 ```bash
@@ -50,6 +63,14 @@ Build for production:
 
 ```bash
 npm run build
+```
+
+Quality checks:
+
+```bash
+npm run typecheck
+npm run lint
+npm run test
 ```
 
 ## License
