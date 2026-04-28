@@ -1,6 +1,6 @@
 # Amalgam Streaming Platform
 
-PulseStream (Amalgam) is a next-generation live streaming creator operating system designed as resilient creator infrastructure: a unified system for streaming, production, interaction, growth, and distribution.
+PulseStream (Amalgam) is a next-generation live streaming creator operating system designed as resilient creator infrastructure: a unified system for streaming, production, interaction, growth, and collaboration.
 
 ## Ownership
 
@@ -20,7 +20,6 @@ This repository now includes a Creator-first dashboard prototype implementing th
 - Clip Pipeline workflow with posting state, ROI-oriented metrics, and diagnostics.
 - Structured content-ops tables for pillar experiments, distribution states, short blueprints, timeline sections, and retention diagnostics.
 - Clip pipeline has been split into feature modules (data hook + table components) to improve maintainability/debugging.
-- Clip Pipeline workflow with posting state and ROI-oriented metrics.
 - Growth System tracking all six growth levers and weekly progress notes.
 - Category Arbitrage calculations with viewer/streamer ratio and tier verdicting.
 - Raid Network roster and reciprocity history view.
@@ -30,8 +29,7 @@ This repository now includes a Creator-first dashboard prototype implementing th
 
 ### Data persistence
 
-The app uses a lightweight **Base44-style entity layer** in `src/data/base44.ts` that persists entities to `localStorage` and includes malformed localStorage recovery + one-click seed reset support:
-The app uses a lightweight **Base44-style entity layer** in `src/data/base44.ts` that persists entities to `localStorage`:
+The app uses a lightweight **Base44-style entity layer** in `src/data/base44.ts` that persists entities to `localStorage` and includes malformed localStorage recovery + one-click seed reset support for entities:
 
 - `StreamProject`
 - `Clip`
@@ -39,18 +37,6 @@ The app uses a lightweight **Base44-style entity layer** in `src/data/base44.ts`
 - `Script`
 - `GrowthEntry`
 - `CategoryEntry`
-
-## NPM Access Setup
-
-If your environment blocks anonymous package installs, configure npm auth before installing:
-
-```bash
-export NPM_TOKEN=<your-npm-token>
-npm run npm:access
-npm whoami
-```
-
-You can also copy `.npmrc.example` to `.npmrc` and inject your token securely.
 
 ## Development
 
