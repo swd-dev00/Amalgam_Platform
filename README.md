@@ -1,6 +1,6 @@
 # Amalgam Streaming Platform
 
-PulseStream (Amalgam) is a next-generation live streaming platform designed as resilient creator infrastructure: a unified system for streaming, production, interaction, and monetization.
+PulseStream (Amalgam) is a next-generation live streaming creator operating system designed as resilient creator infrastructure: a unified system for streaming, production, interaction, growth, and distribution.
 
 ## Ownership
 
@@ -11,20 +11,44 @@ PulseStream (Amalgam) is owned and developed by:
 
 All core intellectual property, infrastructure design, and system architecture are attributed to Sierra Warren Developments, LLC.
 
-## Overview
+## Creator OS Prototype (React + TypeScript + Tailwind)
 
-PulseStream is being designed to replace fragmented streaming workflows with a native, all-in-one platform. The vision includes:
+This repository now includes a Creator-first dashboard prototype implementing the core flows:
 
-- native streaming and production tooling
-- creator dashboard and workflow management
-- optional AI assistant panel support
-- integrated clipping and repurposing workflows
-- built-in monetization and audience interaction systems
-- resilient fail-safe architecture for live operations
+- Dashboard command center with live status indicators, quick metrics, activity feed, pre-flight checklist, and Go Live action.
+- Stream Pipeline lifecycle stages (`Idea → Recording → Editing → Published`) and platform targets (Twitch, YouTube, Kick, TikTok).
+- Clip Pipeline workflow with posting state, ROI-oriented metrics, and diagnostics.
+- Structured content-ops tables for pillar experiments, distribution states, short blueprints, timeline sections, and retention diagnostics.
+- Growth System tracking all six growth levers and weekly progress notes.
+- Category Arbitrage calculations with viewer/streamer ratio and tier verdicting.
+- Raid Network roster and reciprocity history view.
+- AI Bestie panel with tone selector (`Hype`, `Sassy`, `Chill`, `Dramatic`, `Pro`) and saved scripts library.
+- Architecture status page with Shadow Mode / Safe Mode / Modular Engine health and pre-flight checklist.
+- Settings for Starter vs Pro mode, Safe Mode Live, Shadow Mode, and target platform devices.
 
-## Status
+### Data persistence
 
-This project is currently in active design and development.
+The app uses a lightweight **Base44-style entity layer** in `src/data/base44.ts` that persists entities to `localStorage` and includes malformed localStorage recovery + one-click seed reset support:
+
+- `StreamProject`
+- `Clip`
+- `RaidPartner`
+- `Script`
+- `GrowthEntry`
+- `CategoryEntry`
+
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+Build for production:
+
+```bash
+npm run build
+```
 
 ## License
 
