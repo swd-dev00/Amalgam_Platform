@@ -1,3 +1,18 @@
+import type {
+  CategoryEntry,
+  Clip,
+  ContentExperiment,
+  DistributionItem,
+  EngagementLog,
+  GrowthEntry,
+  LongVideo,
+  RaidPartner,
+  RetentionCheckpoint,
+  Script,
+  ShortBlueprint,
+  StreamProject,
+  TimelineSection,
+} from '../types';
 import type { CategoryEntry, Clip, GrowthEntry, RaidPartner, Script, StreamProject } from '../types';
 
 type EntityMap = {
@@ -13,6 +28,7 @@ type EntityMap = {
   shortBlueprints: ShortBlueprint[];
   timelineSections: TimelineSection[];
   retentionCheckpoints: RetentionCheckpoint[];
+  engagementLogs: EngagementLog[];
 };
 
 const seeds: EntityMap = {
@@ -98,10 +114,48 @@ const seeds: EntityMap = {
     { id: 'r-120', timeSec: 120, retentionPct: 77, dropPct: 7, section: 'Early interactions', likelyProblem: 'Slow first interaction', fixApplied: 'Jump into first challenge faster' },
     { id: 'r-180', timeSec: 180, retentionPct: 70, dropPct: 7, section: 'Early interactions', likelyProblem: 'Questions too soft', fixApplied: 'Ask harder question' },
   ],
+  engagementLogs: [
+    {
+      id: 'e-1',
+      date: '2026-04-28',
+      type: 'Short',
+      platform: 'TikTok',
+      posted: true,
+      videoId: 'VID-114',
+      questionAsked: 'What social rule do you break most often?',
+      pinned: 'Would you answer this on camera?',
+      replies: 64,
+    },
+  ],
 };
 
 const key = 'amalgam-base44';
 
+const cloneSeeds = () => JSON.parse(JSON.stringify(seeds)) as EntityMap;
+
+function isEntityMap(value: unknown): value is EntityMap {
+  if (!value || typeof value !== 'object') return false;
+  return Object.keys(seeds).every((entity) => Array.isArray((value as Record<string, unknown>)[entity]));
+}
+
+function getStore(): EntityMap {
+  const raw = localStorage.getItem(key);
+  if (!raw) {
+    const fresh = cloneSeeds();
+    localStorage.setItem(key, JSON.stringify(fresh));
+    return fresh;
+  }
+
+  try {
+    const parsed = JSON.parse(raw) as unknown;
+    if (isEntityMap(parsed)) return parsed;
+  } catch {
+    // no-op: fallback to fresh seed if malformed JSON
+  }
+
+  const fallback = cloneSeeds();
+  localStorage.setItem(key, JSON.stringify(fallback));
+  return fallback;
 function getStore(): EntityMap {
   const raw = localStorage.getItem(key);
   if (!raw) {
@@ -131,5 +185,10 @@ export const Base44 = {
     const data = getStore();
     (data[entity] as Array<{ id: string }>).unshift(record as { id: string });
     setStore(data);
+  },
+  reset() {
+    const fresh = cloneSeeds();
+    setStore(fresh);
+    return fresh;
   },
 };

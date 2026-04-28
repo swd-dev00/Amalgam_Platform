@@ -29,6 +29,7 @@ This repository now includes a Creator-first dashboard prototype implementing th
 
 ### Data persistence
 
+The app uses a lightweight **Base44-style entity layer** in `src/data/base44.ts` that persists entities to `localStorage` and includes malformed localStorage recovery + one-click seed reset support:
 The app uses a lightweight **Base44-style entity layer** in `src/data/base44.ts` that persists entities to `localStorage`:
 
 - `StreamProject`

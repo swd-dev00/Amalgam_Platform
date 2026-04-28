@@ -123,3 +123,15 @@ export interface RetentionCheckpoint {
   likelyProblem: string;
   fixApplied: string;
 }
+
+export interface EngagementLog {
+  id: string;
+  date: string;
+  type: 'Short' | 'Long' | 'Post';
+  platform: string;
+  posted: boolean;
+  videoId: string;
+  questionAsked: string;
+  pinned: string;
+  replies: number;
+}
