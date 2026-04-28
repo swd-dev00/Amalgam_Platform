@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { Base44 } from '../data/base44';
 
 export function ClipPipelinePage() {
@@ -129,6 +130,18 @@ export function ClipPipelinePage() {
         </div>
       </div>
 
+  const posted = clips.filter((c) => c.posted).length;
+  const totalViews = clips.reduce((sum, c) => sum + c.views, 0);
+
+  return (
+    <section className="space-y-4">
+      <h1 className="text-2xl font-bold">Clip Pipeline</h1>
+      <p className="text-sm text-slate-300">Track clip distribution across TikTok, YT Shorts, and X with ROI visibility.</p>
+      <div className="grid gap-3 md:grid-cols-3">
+        <div className="rounded-xl bg-slate-800 p-3">Posted clips: <strong>{posted}</strong></div>
+        <div className="rounded-xl bg-slate-800 p-3">Total views: <strong>{totalViews.toLocaleString()}</strong></div>
+        <div className="rounded-xl bg-slate-800 p-3">ROI score: <strong>{Math.round(totalViews / Math.max(posted, 1))}</strong></div>
+      </div>
       <div className="space-y-2">
         {clips.map((clip) => (
           <div key={clip.id} className="flex items-center justify-between rounded-lg bg-slate-800/80 p-3 text-sm">
